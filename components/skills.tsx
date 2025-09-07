@@ -167,9 +167,9 @@ export default function Skills() {
       icon: <Settings className="h-5 w-5" />,
       skills: [
         {
-          id: "kafka",
-          name: "Kafka",
-          description: "Distributed event streaming platform for high-performance data pipelines",
+          id: "redis",
+          name: "redis",
+          description: "Use as a cache to real-timeize the system",
         },
         {
           id: "github-actions",
@@ -185,6 +185,11 @@ export default function Skills() {
           id: "automation",
           name: "Automation",
           description: "Process of automatically building, testing, and deploying applications",
+        },
+        {
+          id: "docker",
+          name: "docker",
+          description: "Containerization platform for developing, shipping, and running applications",
         },
       ],
     },

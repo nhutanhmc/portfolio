@@ -5,6 +5,13 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import ava from "../imgs/anh7.png"
+import anh1 from "../imgs/anh1.jpg"
+import anh2 from "../imgs/anh2.jpg"
+import anh3 from "../imgs/anh3.jpg"
+import anh4 from "../imgs/anh4.jpg"
+import anh5 from "../imgs/anh5.jpg"
+import anh6 from "../imgs/anh6.jpg"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   ArrowLeft,
@@ -75,26 +82,37 @@ export default function SmartRunningCoachDemo() {
 
   const screenshots = [
     {
-      title: "Main Dashboard",
-      description: "Overview of performance and training statistics",
-      image: "/placeholder.svg?height=400&width=600&text=Dashboard",
+      title: "Profile user",
+      description: "",
+      image: anh1,
     },
     {
-      title: "Training Plans",
-      description: "Create, edit, and track personalized training schedules",
-      image: "/placeholder.svg?height=400&width=600&text=Training+Plans",
+      title: "Chat box with experts",
+      description: "",
+      image: anh2,
     },
     {
       title: "Community",
-      description: "Posts, chats, and interaction with experts and peers",
-      image: "/placeholder.svg?height=400&width=600&text=Community",
+      description: "",
+      image: anh3,
     },
     {
-      title: "Reports & Analytics",
-      description: "Detailed charts and AI-driven insights",
-      image: "/placeholder.svg?height=400&width=600&text=Reports+Analytics",
+      title: "Analytics by AI",
+      description: "",
+      image: anh4,
+    },
+    {
+      title: "Session running",
+      description: "",
+      image: anh5,
+    },
+    {
+      title: "Dashboard",
+      description: "",
+      image: anh6,
     },
   ]
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -114,17 +132,12 @@ export default function SmartRunningCoachDemo() {
             </div>
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm" asChild>
-                <Link href="https://github.com/nhutanhmc/Jewelry-store-manager-nodejs-" target="_blank">
+                <Link href="https://github.com/SP25-SEP490-Capstone/smart-running-coach-BackEnd" target="_blank">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </Link>
               </Button>
-              <Button size="sm" asChild>
-                <Link href="#live-demo">
-                  <Play className="mr-2 h-4 w-4" />
-                  Live Demo
-                </Link>
-              </Button>
+
             </div>
           </div>
         </div>
@@ -145,7 +158,7 @@ export default function SmartRunningCoachDemo() {
             <h2 className="text-4xl font-bold mb-4">Smart Running Coach App</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Smart Running Coach is a running app designed to support runners of all levels with personalized, evidence-based training plans.
-              The app combines structured guidance, real-time tracking, and injury prevention to help users train effectively and reach their goals safely. 
+              The app combines structured guidance, real-time tracking, and injury prevention to help users train effectively and reach their goals safely.
               Enhanced feedback is powered by AI for personalized insights.
             </p>
           </div>
@@ -154,7 +167,7 @@ export default function SmartRunningCoachDemo() {
           <div className="relative max-w-4xl mx-auto">
             <div className="relative h-96 rounded-lg overflow-hidden border shadow-2xl">
               <Image
-                src="/placeholder.svg?height=600&width=800&text=Smart+Running+Coach+Dashboard"
+                src={ava}
                 alt="Smart Running Coach Dashboard"
                 fill
                 className="object-cover"
@@ -330,12 +343,12 @@ export default function SmartRunningCoachDemo() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card className="overflow-hidden">
-                    <div className="relative h-48">
+                    <div className="relative aspect-[9/16] bg-muted">  {/* hoặc aspect-[3/4], aspect-square */}
                       <Image
-                        src={screenshot.image || "/placeholder.svg"}
+                        src={screenshot.image}
                         alt={screenshot.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"     // KHÔNG kéo dãn
                       />
                     </div>
                     <CardHeader>
@@ -353,7 +366,6 @@ export default function SmartRunningCoachDemo() {
         <section id="live-demo" className="mb-12">
           <Card>
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Live Demo</CardTitle>
               <CardDescription>Try the system with demo accounts</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
@@ -361,19 +373,19 @@ export default function SmartRunningCoachDemo() {
                 <h4 className="font-semibold mb-4">Demo Login Information:</h4>
                 <div className="grid md:grid-cols-2 gap-4 text-sm">
                   <div>
-                    <p className="font-medium">Admin:</p>
-                    <p>Email: admin@demo.com</p>
-                    <p>Password: demo123</p>
+                    <p className="font-medium">Runner:</p>
+                    <p>Email: thienbao860</p>
+                    <p>Password: password123</p>
                   </div>
                   <div>
-                    <p className="font-medium">Staff:</p>
-                    <p>Email: staff@demo.com</p>
-                    <p>Password: demo123</p>
+                    <p className="font-medium">Expert:</p>
+                    <p>Email: thienbao860ex</p>
+                    <p>Password: password</p>
                   </div>
                 </div>
               </div>
               <Button size="lg" asChild>
-                <Link href="https://jewelry-store-demo.vercel.app" target="_blank">
+                <Link href="https://github.com/SP25-SEP490-Capstone/smart-running-coach-BackEnd" target="_blank">
                   <ExternalLink className="mr-2 h-5 w-5" />
                   Open Demo
                 </Link>

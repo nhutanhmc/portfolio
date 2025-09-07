@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Github, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
+import anh8 from "../imgs/anh8.jpg"
 export default function FinalProjects() {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -20,10 +20,9 @@ export default function FinalProjects() {
       title: "Smart running",
       description:
         "A running app designed to support runners of all levels with personalized",
-      image:
-        "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: anh8,
       technologies: ["Node.js", "Express.js", "postgre", "prisma", "Cloudinary", "Firebase", "Reactjs", "react native", "Redis", "socket.io", "OpenAI api", "Resend", "docker", "github action"],
-      github: "https://github.com/nhutanhmc/Jewelry-store-manager-nodejs-",
+      github: "https://github.com/SP25-SEP490-Capstone/smart-running-coach-BackEnd",
       demo: "/demo/jewelry-store",
       type: "Đồ án tốt nghiệp",
       year: "2024",
