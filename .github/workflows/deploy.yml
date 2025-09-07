@@ -1,0 +1,76 @@
+name: Deploy Portfolio (Next static export)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      DEPLOY_BASE: /var/www/portfolio
+      NODE_VERSION: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --no-audit --no-fund
+
+      - name: Build static export
+        run: npm run export
+
+      - name: Ensure out/ exists
+        run: |
+          [ -d "out" ] || (echo "❌ Không thấy thư mục out/ sau khi export" && exit 1)
+
+      # Tạo thư mục release trên VPS
+      - name: Prepare release on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            set -e
+            RELEASE="${{ env.DEPLOY_BASE }}/releases/${{ github.sha }}"
+            mkdir -p "$RELEASE"
+
+      # Upload build tĩnh (thư mục out/) lên VPS
+      - name: Upload static files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "out/*"
+          target: "${{ env.DEPLOY_BASE }}/releases/${{ github.sha }}/"
+          strip_components: 0
+          overwrite: true
+
+      # Kích hoạt release mới và dọn cũ
+      - name: Activate release & cleanup
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            set -e
+            BASE="${{ env.DEPLOY_BASE }}"
+            RELEASE="${BASE}/releases/${{ github.sha }}"
+            ln -sfn "$RELEASE" "${BASE}/current"
+            cd "${BASE}/releases"
+            ls -1t | tail -n +4 | xargs -r rm -rf
+            sudo nginx -t && sudo systemctl reload nginx
