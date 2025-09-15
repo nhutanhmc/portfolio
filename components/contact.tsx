@@ -23,32 +23,31 @@ export default function Contact() {
     message: "",
   })
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Kiểm tra các trường dữ liệu đã được điền chưa (validate)
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       alert("Please fill in all fields.")
       return
     }
 
-    // Gửi email qua EmailJS
     emailjs
       .send(
-        "service_fl24z6e",
-        "template_krmj4bg",
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
+          to_email: "nhutanhmc@gmail.com", // ép nhận về email này
         },
-        "QP6YuNN3-xqNNJbQK",
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       )
       .then((result) => {
         console.log("Email successfully sent!", result.text)
