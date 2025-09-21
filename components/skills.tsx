@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Database, Globe, Server, Smartphone, Cloud, Settings } from "lucide-react"
+import { Database, Globe, Server, Smartphone, Cloud, Settings, ClipboardList } from "lucide-react"
 import { useState } from "react"
 
 // Custom skill badge component with tooltip
@@ -19,15 +19,24 @@ function SkillBadge({ skill }) {
       onMouseLeave={() => setShowTooltip(false)}
       onClick={() => setShowTooltip(!showTooltip)} // Toggle on click for mobile
     >
-      <Badge variant="secondary" className="px-4 py-2 text-sm font-medium cursor-pointer">
+      <Badge
+        variant="secondary"
+        className="px-4 py-2.5 text-sm font-medium cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-md hover:bg-primary/10 hover:border-primary/20 border border-transparent max-w-[200px] whitespace-normal text-center leading-relaxed"
+      >
         {skill.name}
       </Badge>
 
       {showTooltip && (
-        <div className="absolute z-50 bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-popover text-popover-foreground rounded-md shadow-lg border">
-          <div className="text-sm">{skill.description}</div>
-          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-popover border-r border-b"></div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className="absolute z-50 bottom-full left-1/2 transform -translate-x-1/2 mb-3 w-72 p-4 bg-popover text-popover-foreground rounded-lg shadow-xl border border-border/50 backdrop-blur-sm"
+        >
+          <div className="text-sm leading-relaxed">{skill.description}</div>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 rotate-45 w-3 h-3 bg-popover border-r border-b border-border/50"></div>
+        </motion.div>
       )}
     </div>
   )
@@ -88,11 +97,11 @@ export default function Skills() {
           name: "Java Spring Boot",
           description: "Framework to create stand-alone, production-grade Spring-based applications",
         },
-        {
-          id: "python-django",
-          name: "Python Django",
-          description: "High-level Python web framework that encourages rapid development and clean, pragmatic design",
-        },
+        // {
+        //   id: "python-django",
+        //   name: "Python Django",
+        //   description: "High-level Python web framework that encourages rapid development and clean, pragmatic design",
+        // },
         {
           id: "rest-api",
           name: "RESTful APIs",
@@ -171,11 +180,7 @@ export default function Skills() {
       name: "DevOps & Automation",
       icon: <Settings className="h-5 w-5" />,
       skills: [
-        {
-          id: "redis",
-          name: "redis",
-          description: "Use as a cache to real-timeize the system",
-        },
+        { id: "redis", name: "redis", description: "Use as a cache to real-timeize the system" },
         {
           id: "github-actions",
           name: "GitHub Actions",
@@ -198,52 +203,153 @@ export default function Skills() {
         },
       ],
     },
+    // >>> NEW CATEGORY: Project & Issue Tracking <<<
+    {
+      id: "pm",
+      name: "Project & Issue Tracking",
+      icon: <ClipboardList className="h-5 w-5" />,
+      skills: [
+        {
+          id: "jira",
+          name: "Jira",
+          description: "Issue tracking, Scrum/Kanban boards, roadmaps; mạnh về workflow & integration DevOps.",
+        },
+        {
+          id: "linear",
+          name: "Linear",
+          description: "Trình quản lý issue nhanh, phím tắt mạnh; liên kết chặt với GitHub/PR.",
+        },
+        {
+          id: "asana",
+          name: "Asana",
+          description: "Quản lý công việc theo dự án, timeline, dependency, goal tracking.",
+        },
+        { id: "trello", name: "Trello", description: "Kanban nhẹ nhàng, linh hoạt cho team nhỏ hoặc cá nhân." },
+        { id: "clickup", name: "ClickUp", description: "Nền tảng all-in-one: task, doc, goal, sprint, dashboard." },
+        {
+          id: "notion",
+          name: "Notion",
+          description: "Doc + database + kanban; hợp viết PRD, spec và theo dõi task nhẹ.",
+        },
+        {
+          id: "azure-boards",
+          name: "Azure Boards",
+          description: "Backlog/board/sprint tích hợp Azure Repos/Pipelines.",
+        },
+        {
+          id: "github-projects",
+          name: "GitHub Projects",
+          description: "Board/table gắn trực tiếp với Issues/PR; automation bằng workflows.",
+        },
+      ],
+    },
   ]
 
   return (
-    <section id="skills" className="py-20">
-      <div className="container px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-24 bg-gradient-to-b from-background to-muted/20">
+      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold tracking-tight text-center mb-12">
-            Technical <span className="text-primary">Skills</span>
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+              Technical{" "}
+              <span className="text-primary bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                Skills
+              </span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              A comprehensive overview of my technical expertise across different domains
+            </p>
+          </div>
 
-          <Tabs defaultValue="frontend" className="max-w-4xl mx-auto">
-            <TabsList className="flex flex-wrap gap-2 mb-8">
-              {skillCategories.map((category) => (
-                <TabsTrigger key={category.id} value={category.id} className="flex items-center gap-2">
-                  {category.icon}
-                  <span className="hidden md:inline">{category.name}</span>
-                </TabsTrigger>
-              ))}
-            </TabsList>
+          <Tabs defaultValue="frontend" className="max-w-5xl mx-auto">
+            <div className="mb-10 space-y-3">
+              {/* First row of tabs */}
+              <TabsList className="grid grid-cols-3 md:grid-cols-6 gap-2 h-auto p-2 bg-muted/50 backdrop-blur-sm">
+                {skillCategories.slice(0, 6).map((category) => (
+                  <TabsTrigger
+                    key={category.id}
+                    value={category.id}
+                    className="flex flex-col md:flex-row items-center gap-2 p-3 md:p-2 text-xs md:text-sm font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md"
+                  >
+                    {category.icon}
+                    <span className="hidden sm:inline text-center">{category.name}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+
+              {/* Second row of tabs */}
+              <TabsList className="grid grid-cols-1 gap-2 h-auto p-2 bg-muted/50 backdrop-blur-sm max-w-xs mx-auto">
+                {skillCategories.slice(6).map((category) => (
+                  <TabsTrigger
+                    key={category.id}
+                    value={category.id}
+                    className="flex flex-col md:flex-row items-center gap-2 p-3 md:p-2 text-xs md:text-sm font-medium transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md"
+                  >
+                    {category.icon}
+                    <span className="hidden sm:inline text-center">{category.name}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
 
             {skillCategories.map((category) => (
               <TabsContent key={category.id} value={category.id}>
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                      {category.icon}
-                      {category.name} Skills
-                    </h3>
-
-                    <div className="flex flex-wrap gap-3">
-                      {category.skills.map((skill, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: index * 0.05 }}
-                        >
-                          <SkillBadge skill={skill} />
-                        </motion.div>
-                      ))}
+                <Card className="border-0 shadow-xl bg-card/50 backdrop-blur-sm">
+                  <CardContent className="p-8">
+                    <div className="flex items-center gap-3 mb-8 pb-4 border-b border-border/50">
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary">{category.icon}</div>
+                      <h3 className="text-2xl font-bold text-foreground">{category.name} Skills</h3>
                     </div>
+
+                    {category.id === "pm" ? (
+                      <div className="space-y-6">
+                        {/* First row */}
+                        <div className="flex flex-wrap gap-3 justify-start items-start">
+                          {category.skills.slice(0, 4).map((skill, index) => (
+                            <motion.div
+                              key={index}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: index * 0.08 }}
+                            >
+                              <SkillBadge skill={skill} />
+                            </motion.div>
+                          ))}
+                        </div>
+
+                        {/* Second row */}
+                        <div className="flex flex-wrap gap-3 justify-start items-start">
+                          {category.skills.slice(4).map((skill, index) => (
+                            <motion.div
+                              key={index + 4}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.4, delay: (index + 4) * 0.08 }}
+                            >
+                              <SkillBadge skill={skill} />
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex flex-wrap gap-3 justify-start items-start">
+                        {category.skills.map((skill, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: index * 0.08 }}
+                          >
+                            <SkillBadge skill={skill} />
+                          </motion.div>
+                        ))}
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </TabsContent>
