@@ -22,7 +22,7 @@ export default function FinalProjects() {
         "A running app designed to support runners of all levels with personalized",
       image: anh8,
       technologies: ["Node.js", "Express.js", "postgre", "prisma", "Cloudinary", "Firebase", "Reactjs", "react native", "Redis", "socket.io", "OpenAI api", "Resend", "docker", "github action"],
-      github: "https://github.com/SP25-SEP490-Capstone/smart-running-coach-BackEnd",
+      github: "https://github.com/SP25-SEP490-Capstone",
       demo: "/demo/jewelry-store",
       type: "Đồ án tốt nghiệp",
       year: "2024",

@@ -385,9 +385,9 @@ export default function SmartRunningCoachDemo() {
                 </div>
               </div>
               <Button size="lg" asChild>
-                <Link href="https://github.com/SP25-SEP490-Capstone/smart-running-coach-BackEnd" target="_blank">
+                <Link href="https://github.com/SP25-SEP490-Capstone" target="_blank">
                   <ExternalLink className="mr-2 h-5 w-5" />
-                  Open Demo
+                  Source code
                 </Link>
               </Button>
             </CardContent>
