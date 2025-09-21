@@ -89,6 +89,11 @@ export default function Skills() {
           description: "Framework to create stand-alone, production-grade Spring-based applications",
         },
         {
+          id: "python-django",
+          name: "Python Django",
+          description: "High-level Python web framework that encourages rapid development and clean, pragmatic design",
+        },
+        {
           id: "rest-api",
           name: "RESTful APIs",
           description: "Architectural style for designing networked applications",
