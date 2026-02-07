@@ -24,7 +24,7 @@ export default function FinalProjects() {
       technologies: ["Node.js", "Express.js", "postgre", "prisma", "Cloudinary", "Firebase", "Reactjs", "react native", "Redis", "socket.io", "OpenAI api", "Resend", "docker", "github action"],
       github: "https://github.com/SP25-SEP490-Capstone",
       demo: "/demo/jewelry-store",
-      type: "Đồ án tốt nghiệp",
+      type: "Graduation Thesis",
       year: "2024",
     },
   ]
@@ -82,7 +82,7 @@ export default function FinalProjects() {
                       <CardContent className="flex-grow">
                         <div className="mb-6">
                           <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide text-muted-foreground">
-                            Technologys Used
+                            Technologies Used
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {project.technologies.map((tech, i) => (
