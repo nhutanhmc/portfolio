@@ -21,8 +21,8 @@ export default function Footer() {
               Ho Chi Minh City, Vietnam
               <br />
               Phone:{" "}
-              <a href="tel:0342894891" className="hover:text-primary">
-                0342894891
+              <a href="tel:0909652502" className="hover:text-primary">
+                0909652502
               </a>
             </address>
           </div>
