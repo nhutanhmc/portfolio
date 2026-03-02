@@ -20,8 +20,8 @@ export default function SmoothScroll() {
     }
 
     // Add smooth scrolling to all links
-    const handleLinkClick = (e) => {
-      const target = e.target.closest("a")
+    const handleLinkClick = (e: MouseEvent) => {
+      const target = (e.target as Element).closest("a")
 
       if (target && target.hash && target.hash.startsWith("#") && document.querySelector(target.hash)) {
         e.preventDefault()

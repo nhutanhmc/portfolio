@@ -19,7 +19,7 @@ export default function SchemaMarkup() {
             addressCountry: "Vietnam",
           },
           email: "nhutanhmc@gmail.com",
-          telephone: "0342894891",
+          telephone: "0909652502",
           sameAs: ["https://github.com/nhutanhmc", "https://linkedin.com/in/anh-nguyen-296b53333"],
           knowsAbout: ["React.js", "Next.js", "Node.js", "Express.js", "MongoDB", "React Native", "Java Spring Boot"],
         }),

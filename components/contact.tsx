@@ -74,8 +74,8 @@ export default function Contact() {
     {
       icon: <Phone className="h-5 w-5 text-primary" />,
       title: "Phone",
-      value: "0342894891 - 0789524779",
-      link: "tel:0342894891",
+      value: "0909652502",
+      link: "tel:0909652502",
     },
     {
       icon: <MapPin className="h-5 w-5 text-primary" />,

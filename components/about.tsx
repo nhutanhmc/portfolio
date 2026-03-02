@@ -58,7 +58,7 @@ export default function About() {
                   <CardContent className="p-4">
                     <div className="flex items-center gap-2">
                       <Badge variant="outline">Phone</Badge>
-                      <span className="text-sm">0342894891 - 0789524779</span>
+                      <span className="text-sm">0909652502</span>
                     </div>
                   </CardContent>
                 </Card>

@@ -19,8 +19,9 @@ export default function Navbar() {
       const scrollPosition = window.scrollY + 100 // Offset for better detection
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop
-        const sectionHeight = section.offsetHeight
+        const htmlSection = section as HTMLElement
+        const sectionTop = htmlSection.offsetTop
+        const sectionHeight = htmlSection.offsetHeight
         const sectionId = section.getAttribute("id")
 
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight && sectionId) {
@@ -43,7 +44,7 @@ export default function Navbar() {
     { name: "Contact", href: "#contact" },
   ]
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const targetId = href.replace("#", "")
     const targetElement = document.getElementById(targetId)
