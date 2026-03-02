@@ -9,7 +9,12 @@ import { Database, Globe, Server, Smartphone, Cloud, Settings, ClipboardList } f
 import { useState } from "react"
 
 // Custom skill badge component with tooltip
-function SkillBadge({ skill }) {
+interface Skill {
+  name: string
+  description: string
+}
+
+function SkillBadge({ skill }: { skill: Skill }) {
   const [showTooltip, setShowTooltip] = useState(false)
 
   return (

@@ -24,7 +24,7 @@ export default function Hero() {
     return () => clearInterval(typingInterval)
   }, [])
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLButtonElement>, href: string) => {
     e.preventDefault()
     const targetId = href.replace("#", "")
     const targetElement = document.getElementById(targetId)
